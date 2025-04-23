@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+
+<div class="container text-center">
+  <h1 class="mt-4 mb-4">.
+    Library Collection</h1>
+
+  <div class="row justify-content-center">
+
+    <!-- Har book ke liye ek card generate hoga -->
+    <% books.forEach(book => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow">
+
+          <!-- Book Image with fallback agar image na mile -->
+
+          <!-- ab yaha pe ek books name ka ek array hai aur usi ka obj--- books and  usi object ke properties hain(book.title and all)  -->
+           
+          <img src="<%= book.imageUrl %>" class="card-img-top" alt="<%= book.title %>" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text">Author: <%= book.author %></p>
+            <p class="card-text">Year: <%= book.yearPublished %></p>
+            <div class="d-flex justify-content-between">
+              <a href="/books/<%= book._id %>/edit" class="btn btn-warning">Edit</a>
+              <form action="/books/<%= book._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <a href="/books/new" class="btn btn-primary mt-4">Add New Book</a>
+</div>
+
+<%- include('../partials/footer') %>

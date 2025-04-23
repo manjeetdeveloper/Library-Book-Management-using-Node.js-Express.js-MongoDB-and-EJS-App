@@ -1,0 +1,43 @@
+<%- include('../partials/header') %> <!-- Header file include ki gayi hai (navbar ya top layout) -->
+
+  <div class="container"> <!-- Bootstrap container for centered layout -->
+    <h1 class="mt-4 mb-4">Edit Book Details</h1> <!-- Page heading with top and bottom margin -->
+
+    <!-- PUT method use kiya gaya hai update karne ke liye -->
+    <form action="/books/<%= book._id %>?_method=PUT" method="POST">
+
+      <!-- Book Title input field -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Book Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="<%= book.title %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="author" class="form-label">Author Name</label>
+        <input type="text" class="form-control" id="author" name="author" value="<%= book.author %>" required>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="yearPublished" class="form-label">Year Published</label>
+        <input type="number" class="form-control" id="yearPublished" name="yearPublished"
+          value="<%= book.yearPublished %>" required>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Book Cover Image URL</label>
+        <input type="url" class="form-control" id="imageUrl" name="imageUrl" value="<%= book.imageUrl %>"
+          placeholder="https://webyroot.com/book-cover.jpg">
+      </div>
+
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-warning">Update Book</button>
+        <a href="/books" class="btn btn-secondary">Cancel</a> <!-- Cancel button jo books list page pe le jayega -->
+      </div>
+
+    </form>
+  </div>
+
+  <%- include('../partials/footer') %>
